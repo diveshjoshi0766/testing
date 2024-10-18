@@ -43,6 +43,26 @@ class authControllers{
     }
     // End Method 
 
+    admin_register = async (req, res) => {
+        const { email, name, password } = req.body;
+
+        try {
+            const existingAdmin = await adminModel.findOne({ email });
+            if (existingAdmin) {
+                return responseReturn(res, 404, { error: 'Email Already Exists' });
+            }
+
+            const hashedPassword = await bcrpty.hash(password, 10);
+            const admin = await adminModel.create({ name, email, password: hashedPassword });
+            
+            const token = await createToken({ id: admin.id, role: admin.role });
+            res.cookie('accessToken', token, { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
+
+            return responseReturn(res, 201, { token, message: 'Register Success' });
+        } catch (error) {
+            return responseReturn(res, 500, { error: error.message });
+        }
+    }; 
 
     seller_login = async(req,res) => {
         const {email,password} = req.body
