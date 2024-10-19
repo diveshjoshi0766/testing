@@ -28,13 +28,13 @@ class categoryController{
                 const result = await cloudinary.uploader.upload(image.filepath, { folder: 'categorys'})
 
                 if (result) {
-                    const category = await categoryModel.create({
-                        name,
-                        slug,
-                        image: result.url
-                    })
-                    responseReturn(res, 201,{ category,message : 'Category Added Successfully'})
-                    
+                const category = await categoryModel.create({
+                    name,
+                    slug,
+                    image: result.url
+                })
+                responseReturn(res, 201,{ category,message : 'Category Added Successfully'})
+                
                 } else {
                     responseReturn(res, 404,{ error : 'Image Upload File'})
                 }
@@ -162,9 +162,7 @@ update_category = async (req, res) => {
 
  }
  // end method
-
-
-
+ 
 }
  
 
