@@ -135,6 +135,6 @@ app.use('/api',require('./routes/paymentRoutes'))
 app.use('/api',require('./routes/dashboard/dashboardRoutes'))
 
 app.get('/',(req,res) => res.send('Hello Server'))
-const PORT = process.env.PORT || 5000
+const port = process.env.PORT || 5000
 dbConnect()
-server.listen(PORT, () => console.log(`Server is running on port ${port}`))
+server.listen(port, () => console.log(`Server is running on port ${port}`))
