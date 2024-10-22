@@ -120,7 +120,7 @@ class cardController{
         card_products: p,
         price: calculatePrice,
         card_product_count,
-        shipping_fee: 20 * p.length,
+        platform_fee: 2 * p.length,
         outOfStockProduct,
         buy_product_item
       })
@@ -128,7 +128,6 @@ class cardController{
        } catch (error) {
          console.log(error.message)
        }
-       
     }
     // End Method 
 

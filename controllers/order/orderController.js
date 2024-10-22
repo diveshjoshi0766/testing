@@ -34,7 +34,7 @@ class orderController{
     // end method 
       
     place_order = async (req,res) => {
-        const {price,products,shipping_fee,shippingInfo,userId } = req.body
+        const {price,products,platform_fee,shippingInfo,userId } = req.body
         let authorOrderData = []
         let cardId = []
         const tempDate = moment(Date.now()).format('LLL')
@@ -58,7 +58,7 @@ class orderController{
                 customerId: userId,
                 shippingInfo,
                 products: customerOrderProduct,
-                price: price + shipping_fee,
+                price: price + platform_fee,
                 payment_status: 'unpaid',
                 delivery_status: 'pending',
                 date: tempDate
