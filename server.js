@@ -111,17 +111,12 @@ io.on('connection', (soc) => {
         remove(soc.id)
         io.emit('activeSeller', allSeller) 
     })
-
-
 })
 
-
 require('dotenv').config()
-  
 
 app.use(bodyParser.json())
 app.use(cookieParser())
- 
 app.use('/api/home',require('./routes/home/homeRoutes'))
 app.use('/api',require('./routes/authRoutes'))
 app.use('/api',require('./routes/order/orderRoutes'))
@@ -135,10 +130,10 @@ app.use('/api',require('./routes/paymentRoutes'))
 app.use('/api',require('./routes/dashboard/dashboardRoutes'))
 
 app.get('/',(req,res) => res.send('Hello Server'))
-// const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000
 dbConnect()
-// server.listen(port, () => console.log(`Server is running on port ${port}`))
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+server.listen(port, () => console.log(`Server is running on port ${port}`))
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
